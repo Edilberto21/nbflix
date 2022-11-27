@@ -2,7 +2,14 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      {/* Navbar */}
+      {/* Destaque */}
+      {/* Em alta */}
+      {/* Filmes de cada categoria */}
+    </div>
+  );
 }
 
 export default App;
