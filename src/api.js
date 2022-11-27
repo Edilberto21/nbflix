@@ -35,10 +35,12 @@ const categories = [
 
 export const getMovies = async (path) => {
   try {
-    let url = `https://api.themoviedb.org/3/${path}`;
+    let url = `https://api.themoviedb.org/3${path}`;
     const response = await fetch(url);
     return await response.json();
   } catch (error) {
     console.log("error getMovies: ", error);
   }
 };
+
+export default categories;
