@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import categories, { getMovies } from "../api";
 import "./Banner.css";
-export default function Banner() {
+function Banner() {
   const [movie, setMovie] = React.useState({});
   const fetchRandomMovie = async () => {
     try {
@@ -49,3 +49,5 @@ export default function Banner() {
     </header>
   );
 }
+
+export default Banner;
