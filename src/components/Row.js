@@ -6,6 +6,7 @@ import "./Row.css";
 const imageHost = "https://image.tmdb.org/t/p/original/";
 function Row({ title, path, isLarge }) {
   const [movies, setMovies] = React.useState([]);
+
   const fetchMovies = async (_path) => {
     try {
       const data = await getMovies(_path);
