@@ -3,10 +3,26 @@ import { getMovies } from "../api";
 import "animate.css";
 
 import "./Row.css";
+import ReactPlayer from "react-player";
+import movieTrailer from "movie-trailer";
 const imageHost = "https://image.tmdb.org/t/p/original/";
 function Row({ title, path, isLarge }) {
   const [movies, setMovies] = React.useState([]);
-
+  const [trailerUrl, setTrailerUrl] = React.useState("");
+  const handleOnClick = (movie) => {
+    //pegar url do trailer
+    if (trailerUrl) {
+      setTrailerUrl("");
+    } else {
+      movieTrailer(movie.title || movie.name || movie.original_name || "")
+        .then((url) => {
+          return url ? setTrailerUrl(url) : setTrailerUrl("");
+        })
+        .catch((error) => {
+          console.log("Error fetching movie trailer: ", error);
+        });
+    }
+  };
   const fetchMovies = async (_path) => {
     try {
       const data = await getMovies(_path);
@@ -28,7 +44,8 @@ function Row({ title, path, isLarge }) {
           return (
             <img
               className={`movie-card ${isLarge && "movie-card-large"}`}
-              key={movies.id}
+              onClick={() => handleOnClick(movie)}
+              key={movie.id}
               src={`${imageHost}${
                 isLarge ? movie.backdrop_path : movie.poster_path
               }`}
@@ -37,6 +54,7 @@ function Row({ title, path, isLarge }) {
           );
         })}
       </div>
+      {trailerUrl && <ReactPlayer url={trailerUrl} playing={true} />}
     </div>
   );
 }
