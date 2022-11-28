@@ -20,6 +20,7 @@
   max-height: 100px;
   margin-bottom: 10px;
   transition: transform 450ms;
+  border: 5px solid black;
 }
 
 .movie-card-large {
@@ -31,5 +32,5 @@
 }
 
 .movie-card:hover {
-  transform: scale(1.6);
+  transform: scale(1.3);
 }

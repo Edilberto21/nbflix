@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { getMovies } from "../api";
+import "animate.css";
+
 import "./Row.css";
 const imageHost = "https://image.tmdb.org/t/p/original/";
-function Row({ title, path, isLarge }) {
+export default function Row({ title, path, isLarge }) {
   const [movies, setMovies] = React.useState([]);
   const fetchMovies = async (_path) => {
     try {
@@ -26,7 +28,9 @@ function Row({ title, path, isLarge }) {
             <img
               className={`movie-card ${isLarge && "movie-card-large"}`}
               key={movies.id}
-              src={`${imageHost}${movie.poster_path}`}
+              src={`${imageHost}${
+                isLarge ? movie.backdrop_path : movie.poster_path
+              }`}
               alt={movie.name}
             ></img>
           );
@@ -35,5 +39,3 @@ function Row({ title, path, isLarge }) {
     </div>
   );
 }
-
-export default Row;
